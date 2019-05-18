@@ -53,7 +53,7 @@ router.post('/', jwtAuth, (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.delete(':/id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   const {id} = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     const err = new Error('The `id` is not valid');
@@ -61,13 +61,14 @@ router.delete(':/id', (req, res, next) => {
     return next(err);
   }
 
-  Cards.findOneAndRemove({_id: id})
-    .then (() => {
+  Cards.findOneAndRemove({ _id: id })
+    .then(() => {
       res.sendStatus(204);
     })
     .catch(err => {
       next(err);
     });
 });
+
 
 module.exports = router;
