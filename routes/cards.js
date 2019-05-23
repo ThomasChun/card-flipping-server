@@ -18,7 +18,7 @@ router.get('/', jwtAuth, (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.post('/', jwtAuth, (req, res, next) => {
+router.put('/', jwtAuth, (req, res, next) => {
   const { user, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = req.body;
   const newCard = { user, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year };
 
@@ -46,7 +46,10 @@ router.post('/', jwtAuth, (req, res, next) => {
     return next(err);
   }
 
-  Cards.create(newCard)
+  // Cards.create(newCard)
+  // console.log(req.user);
+  console.log(req.body.id);
+  Cards.findOneAndUpdate({_id: req.body.id}, newCard, {new: true, upsert: true})
     .then(result => {
       res.location(`${req.baseUrl}/${result.id}`).status(201).json(result);
     })
