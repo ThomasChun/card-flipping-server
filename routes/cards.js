@@ -48,7 +48,7 @@ router.put('/', jwtAuth, (req, res, next) => {
 
   // Cards.create(newCard)
   // console.log(req.user);
-  console.log(req.body.id);
+  // console.log('req.body.id', req.body.id);
   Cards.findOneAndUpdate({_id: req.body.id}, newCard, {new: true, upsert: true})
     .then(result => {
       res.location(`${req.baseUrl}/${result.id}`).status(201).json(result);
