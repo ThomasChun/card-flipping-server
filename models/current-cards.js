@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const cardsSchema = new mongoose.Schema(
+const currentCardsSchema = new mongoose.Schema(
   {
     user: { type: String, required: true },
     sport: { type: String },
@@ -29,9 +29,9 @@ const cardsSchema = new mongoose.Schema(
   }
 );
 
-cardsSchema.set('timestamps', true);
+currentCardsSchema.set('timestamps', true);
 
-cardsSchema.set('toJSON', {
+currentCardsSchema.set('toJSON', {
   virtuals: true,
   transform: (doc, res) => {
     delete res._id;
@@ -39,4 +39,4 @@ cardsSchema.set('toJSON', {
   }
 });
 
-module.exports = mongoose.model('Cards', cardsSchema);
+module.exports = mongoose.model('CurrentCards', currentCardsSchema);
