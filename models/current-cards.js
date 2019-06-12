@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const currentCardsSchema = new mongoose.Schema(
   {
     user: { type: String, required: true },
+    cardId: { type: String, required: true },
     sport: { type: String },
     year: { type: String },
     playerName: { type: String, required: true },

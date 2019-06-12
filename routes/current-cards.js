@@ -19,9 +19,9 @@ router.get('/', jwtAuth, (req, res, next) => {
 });
 
 router.put('/', jwtAuth, (req, res, next) => {
-  const { user, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = req.body;
-  const newCard = { user, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year };
-
+  const { user, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year, cardId } = req.body;
+  const newCard = { user, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year, cardId };
+  console.log(cardId);
   if (!user) {
     const err = new Error('Missing `user` in request body');
     err.status = 400;

@@ -34,7 +34,7 @@ cardsSchema.set('timestamps', true);
 cardsSchema.set('toJSON', {
   virtuals: true,
   transform: (doc, res) => {
-    delete res._id;
+    delete res._id; 
     delete res.__v;
   }
 });
